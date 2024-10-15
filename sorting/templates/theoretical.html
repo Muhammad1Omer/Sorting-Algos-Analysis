@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorting Algorithms Overview</title>
+    <style>
+      body {
+          font-family: Arial, sans-serif;
+          margin: 0;
+          padding: 0;
+          display: flex;
+          color: #000; 
+          background-color: #fff; 
+      }
+      .sidebar {
+          height: 100vh;
+          width: 250px; 
+          position: fixed;
+          z-index: 1;
+          top: 0;
+          left: 0;
+          background-color: #000; 
+          overflow-x: hidden;
+          transition: 0.5s; 
+          padding-top: 60px; 
+          color: #fff; 
+      }
+      .sidebar.collapsed {
+          width: 0;
+      }
+      .content {
+          margin-left: 250px;
+          padding: 20px;
+          flex: 1;
+      }
+      .content.collapsed {
+          margin-left: 0;
+      }
+      ul {
+          list-style: none;
+          padding: 0;
+      }
+      li {
+          padding: 10px;
+          margin-bottom: 8px;
+          cursor: pointer;
+      }
+      li:hover {
+          background-color: #333; 
+      }
+      button {
+          padding: 10px 20px;
+          background-color: #000;
+          color: #fff; 
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          width: 100%;
+          font-size: 16px; 
+          font-weight: bold;
+      }
+      button:hover {
+          background-color: #444; 
+      }
+      .toggle-btn {
+          position: fixed;
+          top: 20px;
+          left: 10px; 
+          width: 40px;
+          height: 40px;
+          background: #000; 
+          cursor: pointer;
+          border-radius: 20px; 
+          text-align: center;
+          line-height: 40px; 
+          z-index: 1000;
+          color: #fff; 
+      }
+      .toggle-btn:hover {
+          background-color: #444; 
+      }
+      .algorithm-section {
+          margin-top: 20px;
+      }
+      h2 {
+          color: #000;
+      }
+      table {
+          width: 100%;
+          border-collapse: collapse;
+          margin-top: 10px;
+      }
+      th, td {
+          border: 1px solid #ddd;
+          padding: 8px;
+          text-align: left;
+      }
+      th {
+          background-color: #f2f2f2;
+      }
+      .note {
+          font-style: italic;
+          color: #666;
+      }
+    </style>
+</head>
+<script>
+    function toggleSidebar() {
+        var sidebar = document.getElementById("sidebar");
+        var content = document.getElementById("content");
+        sidebar.classList.toggle("collapsed");
+        content.classList.toggle("collapsed");
+    }
+</script>
+<body>
+    <div class="toggle-btn" onclick="toggleSidebar()">&#9776;</div>
+    <div class="sidebar" id="sidebar">
+        <h2>Navigate</h2>
+        <ul>
+            <li><button onclick="location.href='/' ">Home</button></li>
+            <li><button onclick="location.href='/interactive' ">Live Sort</button></li>
+            <li><button onclick="location.href='/empirical' ">Empirical</button></li>
+            <li><button onclick="location.href='/theoretical' ">Theoretical</button></li>
+            <li><button onclick="location.href='/supercharts' ">Super Charts</button></li>
+        </ul>
+    </div>
+    <div class="content" id="content">
+        <img src="{% static 'images/technology.png' %}" alt="Logo" style="width: 100px; height: auto; padding-left: 10px;"/>
+        
+        <div class="algorithm-section">
+            <h2>Theoretical Differences of Sorting Algorithms</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Algorithm</th>
+                        <th>Type</th>
+                        <th>Best Case Time Complexity</th>
+                        <th>Average/Worst Case Time Complexity</th>
+                        <th>Space Complexity</th>
+                        <th>Stability</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Insertion Sort</td>
+                        <td>Comparison-based</td>
+                        <td>O(n)</td>
+                        <td>O(n²)</td>
+                        <td>O(1)</td>
+                        <td>Stable</td>
+                        <td>Builds a sorted array incrementally by taking one element at a time.</td>
+                    </tr>
+                    <tr>
+                        <td>Bubble Sort</td>
+                        <td>Comparison-based</td>
+                        <td>O(n)</td>
+                        <td>O(n²)</td>
+                        <td>O(1)</td>
+                        <td>Stable</td>
+                        <td>Repeatedly traverses the array, comparing and swapping adjacent elements.</td>
+                    </tr>
+                    <tr>
+                        <td>Selection Sort</td>
+                        <td>Comparison-based</td>
+                        <td>O(n²)</td>
+                        <td>O(n²)</td>
+                        <td>O(1)</td>
+                        <td>Not Stable</td>
+                        <td>Divides the array into sorted and unsorted parts, selecting the smallest element.</td>
+                    </tr>
+                    <tr>
+                        <td>Merge Sort</td>
+                        <td>Comparison-based</td>
+                        <td>O(n log n)</td>
+                        <td>O(n log n)</td>
+                        <td>O(n)</td>
+                        <td>Stable</td>
+                        <td>Divides the array into halves and merges them in sorted order.</td>
+                    </tr>
+                    <tr>
+                        <td>Bucket Sort</td>
+                        <td>Non-comparison-based</td>
+                        <td>O(n + k)</td>
+                        <td>O(n + k)</td>
+                        <td>O(n + k)</td>
+                        <td>Stable</td>
+                        <td>Distributes elements into buckets, sorting each individually.</td>
+                    </tr>
+                    <tr>
+                        <td>Quick Sort</td>
+                        <td>Comparison-based</td>
+                        <td>O(n log n)</td>
+                        <td>O(n²)</td>
+                        <td>O(log n)</td>
+                        <td>Not Stable</td>
+                        <td>Picks a pivot and partitions the array into elements less than or greater than the pivot.</td>
+                    </tr>
+                    <tr>
+                        <td>Heap Sort</td>
+                        <td>Comparison-based</td>
+                        <td>O(n log n)</td>
+                        <td>O(n log n)</td>
+                        <td>O(1)</td>
+                        <td>Not Stable</td>
+                        <td>Builds a max heap and repeatedly extracts the maximum element.</td>
+                    </tr>
+                    <tr>
+                        <td>Counting Sort</td>
+                        <td>Non-comparison-based</td>
+                        <td>O(n + k)</td>
+                        <td>O(n + k)</td>
+                        <td>O(k)</td>
+                        <td>Stable</td>
+                        <td>Counts occurrences of each value and determines positions in sorted output.</td>
+                    </tr>
+                    <tr>
+                        <td>Radix Sort</td>
+                        <td>Non-comparison-based</td>
+                        <td>O(nk)</td>
+                        <td>O(nk)</td>
+                        <td>O(n + k)</td>
+                        <td>Stable</td>
+                        <td>Sorts numbers by processing individual digits from least to most significant.</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p class="note">Note: "n" refers to the number of elements, and "k" refers to the range of the input values.</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            color: #000; /* Text Color */
+            background-color: #fff; /* Background Color */
+            overflow: hidden; /* Prevents body from scrolling */
+        }
+        .sidebar {
+            height: 100vh;
+            width: 250px; /* Sidebar width */
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #000; /* Sidebar background color */
+            overflow-x: hidden;
+            transition: 0.5s; /* Smooth sliding effect */
+            padding-top: 60px; /* Increased padding to move h2 down */
+            color: #fff; /* Text Color for Sidebar */
+        }
+        .sidebar.collapsed {
+            width: 0; /* Collapse to zero width */
+        }
+        .content {
+            margin-left: 250px; /* Same as sidebar width */
+            padding: 20px;
+            flex: 1;
+            overflow-y: auto; /* Allows content to scroll */
+        }
+        .content.collapsed {
+            margin-left: 0;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            padding: 10px;
+            margin-bottom: 8px;
+            cursor: pointer;
+        }
+        li:hover {
+            background-color: #333; /* Change background color on hover */
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #000; /* Button Background Color */
+            color: #fff; /* Text Color on Button */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%; /* Full width of sidebar */
+            font-size: 16px; /* Increase text size */
+            font-weight: bold; /* Make text bold */
+        }
+        
+        button:hover {
+            background-color: #444; /* Darker shade of black for hover */
+        }
+        .toggle-btn {
+            position: fixed;
+            top: 20px;
+            left: 10px; /* Adjust this to keep it visible on the edge */
+            width: 40px;
+            height: 40px;
+            background: #000; /* Button Background Color */
+            cursor: pointer;
+            border-radius: 20px; /* Rounded shape */
+            text-align: center;
+            line-height: 40px; /* Align icon vertically */
+            z-index: 1000; /* Ensure it's above other elements */
+            color: #fff; /* Light Text on Button */
+        }
+        .toggle-btn:hover {
+            background-color: #444; /* Change background color on hover */
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            color: #000; /* Text Color */
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #333; /* Dark grey background for table headers */
+        }
+        .table-container {
+            background-color: #f9f9f9; /* Light grey background for table area */
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-top: 20px;
+            color: #000; /* Text Color */
+        }
+        .welcome-msg {
+            font-size: 42px;
+            color: #000; /* Text Color */
+        }
+    </style>
+</head>
+<script>
+    function toggleSidebar() {
+        var sidebar = document.getElementById("sidebar");
+        var content = document.getElementById("content");
+        sidebar.classList.toggle("collapsed");
+        content.classList.toggle("collapsed");
+    }
+</script>
+<body>
+    <div class="toggle-btn" onclick="toggleSidebar()">&#9776;</div>
+    <div class="sidebar" id="sidebar">
+        <h2>Navigate</h2>
+        <ul>
+            <li><button onclick="location.href='/' ">Home</button></li>
+            <li><button onclick="location.href='/interactive' ">Live Sort</button></li>
+            <li><button onclick="location.href='/empirical' ">Empirical</button></li>
+            <li><button onclick="location.href='/theoretical' ">Theoretical</button></li>
+            <li><button onclick="location.href='/supercharts' ">Super Charts</button></li>
+        </ul>
+    </div>
+    <div class="content" id="content">
+        <img src="{% static 'images/technology.png' %}" alt="Logo" style="width: 100px; height: auto; padding-left: 10px;"/>
+        <h1 class="welcome-msg">Welcome to the Sorting Visualizer!</h1>
+        <p>This is a simple homepage for testing the sorting visualizer project.</p>
+        <p>Explore various sorting algorithms and their performance!</p>
+    </div>
+</body>
+</html>
